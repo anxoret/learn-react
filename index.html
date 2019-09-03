@@ -14,7 +14,15 @@
         <script src="lib/react.js"></script>
         <!-- дополнение к React для работы с DOM -->
         <script src="lib/react-dom.js"></script>
+        <!-- подключаем Babel -->
+        <script src="lib/babel-browser.min.js"></script>
+
         <!-- в этом файле наш код -->
-        <script src="app.js"></script>
+        <!-- атрибут text/babel указывает Babel, что данный текст нужно транспилировать,
+        перед тем, как выполнять javascript. после этого открываем
+        терминал и запускаем сервер, написав команду http-server.
+        затем обновляем страницу в браузере и не замечаем никаких ошибок в 
+        проигрывании транспилированного jsx в js -->
+        <script src="app.jsx" type="text/babel"></script>
     </body>
 </html>

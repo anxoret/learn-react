@@ -1,71 +1,34 @@
-var ImageCounter = function(props) {
-    return (
-        <div className="image-counter">
-            <div className="count">{props.count}</div>
-            <img src={'img/' + props.imageUrl} onClick={props.onCount} />
-        </div>
-    );
-}
+//JSX - расширение Javascript синтаксиса, 
+// очень похожее на html
+// например React.createElement("h1", null, "React");
+// будет таким:
+// <h1>React</h1>
+// а 
+// React.createElement("div", { className: "container" }, 
+//     React.createElement("img", { src: "img/react.png" }),
+//     React.createElement("h1", null, "React"), 
+//     React.createElement("p", null, "Библиотека для создания пользовательских интейфейсов") 
+// );
+// будет выглядеть просто так:
+// <div className="container">
+//    <img src="img/react.png" alt="react"/>
+//    <h1>React</h1>
+//    <p>Библиотека для создания пользовательских интейфейсов</p>
+// </div>
 
-var Hero = React.createClass({
-    getInitialState: function() {
-        return {
-            count: 0
-        };
-    },
+// переход из jsx в js переходит с помощью Babel
 
-    handleClick: function () {
-        this.setState({ count: this.state.count + 1 });
-    },
+// вместо настройки Babel (в реальном проекте нужно это делать)
+// создаем скрипт, с помощью которого JSX будет транспилироваться в JS
+// прямо на-ходу:
 
-    render: function() {
-        return (
-            <div className="container">
-                <ImageCounter imageUrl={this.props.imageUrl} count={this.state.count} onCount={this.handleClick} />
-                <h1>{this.props.title}</h1>
-                <p>{this.props.subtitle}</p>
-            </div>
-        );
-    }
-});
+// создаем переменную с содержимым в виде разметки
+var jsx = 
+<div className="container">
+   <img src="img/react.png" alt="react"/>
+   <h1>React</h1>
+   <p>Библиотека для создания пользовательских интейфейсов</p>
+</div>;
 
-var App = React.createClass({
-    render: function() {
-        return (
-            <div>
-                {this.props.heroes.map(function(hero) {
-                    return <Hero key={hero.id} title={hero.title} subtitle={hero.subtitle} imageUrl={hero.imageUrl} />
-                })}
-            </div>
-        );
-    }
-});
+ReactDOM.render(jsx, document.getElementById("root"));
 
-var data = [
-    {
-        id: 1,
-        title: 'React',
-        subtitle: 'Библиотека для создания пользовательских интерфейсов',
-        imageUrl: 'react.png'
-    },
-    {
-        id: 2,
-        title: 'Angular 2',
-        subtitle: 'Один фреймворк',
-        imageUrl: 'angular.png'
-    },
-    {
-        id: 3,
-        title: 'Ember',
-        subtitle: 'Фреймворк для создания амбициозных веб-приложений',
-        imageUrl: 'ember.png'
-    },
-    {
-        id: 4,
-        title: 'Vue',
-        subtitle: 'Прогрессивный фреймворк',
-        imageUrl: 'vue.png'
-    }
-];
-
-ReactDOM.render(<App heroes={data} />, document.getElementById('root'));
